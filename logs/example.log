@@ -1,0 +1,69 @@
+2026-02-24 07:50:45 - ComputerVision - INFO - Logger initialized. Log file: logs/example.log
+2026-02-24 07:50:45 - ComputerVision - INFO - ==================================================
+2026-02-24 07:50:45 - ComputerVision - INFO - DATASET INFORMATION
+2026-02-24 07:50:45 - ComputerVision - INFO - ==================================================
+2026-02-24 07:50:45 - ComputerVision - INFO - Total samples: 1000
+2026-02-24 07:50:45 - ComputerVision - INFO - Training samples: 800
+2026-02-24 07:50:45 - ComputerVision - INFO - Validation samples: 100
+2026-02-24 07:50:45 - ComputerVision - INFO - Test samples: 100
+2026-02-24 07:50:45 - ComputerVision - INFO - Number of classes: 10
+2026-02-24 07:50:45 - ComputerVision - INFO - Image size: 224x224
+2026-02-24 07:50:45 - ComputerVision - INFO - ==================================================
+2026-02-24 07:50:45 - ComputerVision - INFO - ==================================================
+2026-02-24 07:50:45 - ComputerVision - INFO - HYPERPARAMETERS
+2026-02-24 07:50:45 - ComputerVision - INFO - ==================================================
+2026-02-24 07:50:45 - ComputerVision - INFO - learning_rate: 0.001
+2026-02-24 07:50:45 - ComputerVision - INFO - batch_size: 32
+2026-02-24 07:50:45 - ComputerVision - INFO - epochs: 50
+2026-02-24 07:50:45 - ComputerVision - INFO - optimizer: Adam
+2026-02-24 07:50:45 - ComputerVision - INFO - loss_function: CrossEntropy
+2026-02-24 07:50:45 - ComputerVision - INFO - ==================================================
+2026-02-24 07:50:45 - ComputerVision - INFO - ==================================================
+2026-02-24 07:50:45 - ComputerVision - INFO - MODEL ARCHITECTURE
+2026-02-24 07:50:45 - ComputerVision - INFO - ==================================================
+2026-02-24 07:50:45 - ComputerVision - INFO - Type: CNN
+2026-02-24 07:50:45 - ComputerVision - INFO - Total layers: 10
+2026-02-24 07:50:45 - ComputerVision - INFO - Total parameters: 1250000
+2026-02-24 07:50:45 - ComputerVision - INFO - Input shape: (3, 224, 224)
+2026-02-24 07:50:45 - ComputerVision - INFO - Output classes: 10
+2026-02-24 07:50:45 - ComputerVision - INFO - ==================================================
+2026-02-24 07:50:45 - ComputerVision - INFO - ==================================================
+2026-02-24 07:50:45 - ComputerVision - INFO - TRAINING STARTED
+2026-02-24 07:50:45 - ComputerVision - INFO - Start time: 2026-02-24 07:50:45
+2026-02-24 07:50:45 - ComputerVision - INFO - ==================================================
+2026-02-24 07:50:45 - ComputerVision - INFO - Epoch [1/5] - Train Loss: 1.5000, Train Acc: 0.3000, Val Loss: 1.7000, Val Acc: 0.2800
+2026-02-24 07:50:45 - ComputerVision - INFO - Epoch [2/5] - Train Loss: 0.7500, Train Acc: 0.6000, Val Loss: 0.8500, Val Acc: 0.5600
+2026-02-24 07:50:45 - ComputerVision - INFO - Checkpoint saved at epoch 2
+2026-02-24 07:50:45 - ComputerVision - INFO - Path: checkpoints/model_epoch_2.pth
+2026-02-24 07:50:45 - ComputerVision - INFO - Metrics: {'loss': 0.85, 'accuracy': 0.56}
+2026-02-24 07:50:46 - ComputerVision - INFO - Epoch [3/5] - Train Loss: 0.5000, Train Acc: 0.9000, Val Loss: 0.5667, Val Acc: 0.8400
+2026-02-24 07:50:46 - ComputerVision - INFO - Epoch [4/5] - Train Loss: 0.3750, Train Acc: 1.2000, Val Loss: 0.4250, Val Acc: 1.1200
+2026-02-24 07:50:46 - ComputerVision - INFO - Checkpoint saved at epoch 4
+2026-02-24 07:50:46 - ComputerVision - INFO - Path: checkpoints/model_epoch_4.pth
+2026-02-24 07:50:46 - ComputerVision - INFO - Metrics: {'loss': 0.425, 'accuracy': 1.12}
+2026-02-24 07:50:47 - ComputerVision - INFO - Epoch [5/5] - Train Loss: 0.3000, Train Acc: 1.5000, Val Loss: 0.3400, Val Acc: 1.4000
+2026-02-24 07:50:47 - ComputerVision - INFO - ==================================================
+2026-02-24 07:50:47 - ComputerVision - INFO - TRAINING COMPLETED
+2026-02-24 07:50:47 - ComputerVision - INFO - End time: 2026-02-24 07:50:47
+2026-02-24 07:50:47 - ComputerVision - INFO - Duration: 0h 0m 2s
+2026-02-24 07:50:47 - ComputerVision - INFO - ==================================================
+2026-02-24 07:50:47 - ComputerVision - INFO - ==================================================
+2026-02-24 07:50:47 - ComputerVision - INFO - EVALUATION METRICS
+2026-02-24 07:50:47 - ComputerVision - INFO - ==================================================
+2026-02-24 07:50:47 - ComputerVision - INFO - Test Accuracy: 0.9500
+2026-02-24 07:50:47 - ComputerVision - INFO - Test Loss: 0.2500
+2026-02-24 07:50:47 - ComputerVision - INFO - Precision: 0.9400
+2026-02-24 07:50:47 - ComputerVision - INFO - Recall: 0.9300
+2026-02-24 07:50:47 - ComputerVision - INFO - F1-Score: 0.9350
+2026-02-24 07:50:47 - ComputerVision - INFO - ==================================================
+2026-02-24 07:50:47 - ComputerVision - INFO - Prediction: cat (Confidence: 0.9800)
+2026-02-24 07:50:47 - ComputerVision - INFO - Prediction: dog (Confidence: 0.8700)
+2026-02-24 07:50:47 - ComputerVision - INFO - Data Augmentation Applied:
+2026-02-24 07:50:47 - ComputerVision - INFO -   Random Flip: True
+2026-02-24 07:50:47 - ComputerVision - INFO -   Random Rotation: ±15 degrees
+2026-02-24 07:50:47 - ComputerVision - INFO -   Random Crop: True
+2026-02-24 07:50:47 - ComputerVision - INFO -   Color Jitter: True
+2026-02-24 07:50:47 - ComputerVision - ERROR - Exception in Division operation: ZeroDivisionError: division by zero
+2026-02-24 07:50:47 - ComputerVision - INFO - Custom info message
+2026-02-24 07:50:47 - ComputerVision - WARNING - This is a warning message
+2026-02-24 07:50:47 - ComputerVision - ERROR - This is an error message
