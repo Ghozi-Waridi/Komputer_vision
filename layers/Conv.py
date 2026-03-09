@@ -24,12 +24,12 @@ class Conv:
         oh = ih - kh + 1
         ow = iw - kw + 1
 
-        kernel_flat = kernel.flatten()
+        kernel_flat = kernel
         output = np.zeros((oh, ow))
 
         for i in range(oh):
             for j in range(ow):
-                patch = image[i:i+kh, j:j+kw].flatten()
+                patch = image[i:i+kh, j:j+kw]
                 output[i, j] = np.dot(patch, kernel_flat)
 
         return output

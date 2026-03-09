@@ -74,8 +74,6 @@ def main():
     all_images = []
     all_labels = []
     for class_name in CLASS_NAMES:
-        if class_name not in images_per_class:
-            continue
         imgs = images_per_class[class_name]
         all_images.append(imgs)
         all_labels.extend([CLASS_TO_INDEX[class_name]] * len(imgs))
@@ -117,11 +115,6 @@ def main():
     logger.info(f"Waktu feature extraction: {time.time() - t0:.1f}s")
     logger.info(f"Train features: {X_train_feat.shape}")
     logger.info(f"Test  features: {X_test_feat.shape}")
-
-    feat_mean = X_train_feat.mean(axis=0)
-    feat_std = X_train_feat.std(axis=0) + 1e-8
-    X_train_feat = (X_train_feat - feat_mean) / feat_std
-    X_test_feat = (X_test_feat - feat_mean) / feat_std
 
     logger.info("[3/4] Training Neural Network...")
     layer_sizes = [feature_dim] + HIDDEN_LAYERS + [len(CLASS_NAMES)]
