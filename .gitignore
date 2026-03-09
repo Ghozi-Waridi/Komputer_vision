@@ -119,3 +119,6 @@ pythonenv/
 .env
 .env.local
 .env.development
+
+
+data/raw/
