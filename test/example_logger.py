@@ -9,8 +9,7 @@ logger = create_logger(log_dir='logs', log_name='example.log')
 # 1. Log informasi dataset
 dataset_info = {
     'Total samples': 1000,
-    'Training samples': 800,
-    'Validation samples': 100,
+    'Training samples': 900,
     'Test samples': 100,
     'Number of classes': 10,
     'Image size': '224x224'
@@ -45,15 +44,13 @@ start_time = time.time()
 for epoch in range(1, 6):
     train_loss = 1.5 / epoch
     train_acc = 0.3 * epoch
-    val_loss = 1.7 / epoch
-    val_acc = 0.28 * epoch
-    
-    logger.log_epoch(epoch, 5, train_loss, train_acc, val_loss, val_acc)
+
+    logger.log_epoch(epoch, 5, train_loss, train_acc)
     
     # Log checkpoint setiap 2 epoch
     if epoch % 2 == 0:
         checkpoint_path = f'checkpoints/model_epoch_{epoch}.pth'
-        metrics = {'loss': val_loss, 'accuracy': val_acc}
+        metrics = {'loss': train_loss, 'accuracy': train_acc}
         logger.log_checkpoint(checkpoint_path, epoch, metrics)
     
     time.sleep(0.5)

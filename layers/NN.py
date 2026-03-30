@@ -5,7 +5,8 @@ from activation.Activation import relu, relu_derivative, softmax, cross_entropy_
 
 class NeuralNetwork:
 
-    def __init__(self, layer_sizes, learning_rate=0.01, seed=42):
+    def __init__(self, layer_sizes=None, learning_rate=0.01, seed=42,
+                 input_dim=None, hidden_layers=None, output_dim=None):
 
         self.layer_sizes = layer_sizes
         self.learning_rate = learning_rate
@@ -87,9 +88,12 @@ class NeuralNetwork:
         acc = np.mean(pred_labels == true_labels)
         return loss, acc
 
+    def predict_proba(self, X):
+        return self.forward(X)
+
     def predict(self, X):
 
-        probs = self.forward(X)
+        probs = self.predict_proba(X)
         if probs.ndim == 1:
             return np.argmax(probs)
         return np.argmax(probs, axis=1)
@@ -108,12 +112,10 @@ class NeuralNetwork:
         acc = np.mean(pred_labels == true_labels)
         return loss, acc
 
-    def fit(self, X_train, y_train, X_val=None, y_val=None,
-            epochs=100, logger=None):
+    def fit(self, X_train, y_train, epochs=100, logger=None):
 
         history = {
             'train_loss': [], 'train_acc': [],
-            'val_loss': [], 'val_acc': []
         }
 
         pbar = tqdm(range(1, epochs + 1), desc="Training", unit="epoch")
@@ -129,23 +131,21 @@ class NeuralNetwork:
             history['train_acc'].append(epoch_acc)
 
      
-            val_loss, val_acc = None, None
-            if X_val is not None and y_val is not None:
-                val_loss, val_acc = self.evaluate(X_val, y_val)
-                history['val_loss'].append(val_loss)
-                history['val_acc'].append(val_acc)
-
-   
             postfix = {"loss": f"{epoch_loss:.4f}", "acc": f"{epoch_acc:.4f}"}
-            if val_loss is not None:
-                postfix["val_loss"] = f"{val_loss:.4f}"
-                postfix["val_acc"] = f"{val_acc:.4f}"
             pbar.set_postfix(postfix)
 
             if logger:
-                logger.log_epoch(epoch, epochs, epoch_loss, epoch_acc, val_loss, val_acc)
+                logger.log_epoch(epoch, epochs, epoch_loss, epoch_acc)
 
         return history
+
+    def train(self, X_train, y_train, epochs=100, logger=None):
+        return self.fit(
+            X_train,
+            y_train,
+            epochs=epochs,
+            logger=logger,
+        )
 
     def info(self, logger=None):
         lines = [

@@ -2,6 +2,7 @@ import logging
 import os
 from datetime import datetime
 from pathlib import Path
+from sklearn.model_selection import train_test_split
 
 
 class Logger:
@@ -77,7 +78,7 @@ class Logger:
         """Log pesan critical"""
         self.logger.critical(message)
     
-    def log_epoch(self, epoch, total_epochs, train_loss, train_acc, val_loss=None, val_acc=None):
+    def log_epoch(self, epoch, total_epochs, train_loss, train_acc):
         """
         Log hasil training per epoch
         
@@ -86,12 +87,8 @@ class Logger:
             total_epochs: Total epochs
             train_loss: Training loss
             train_acc: Training accuracy
-            val_loss: Validation loss (optional)
-            val_acc: Validation accuracy (optional)
         """
         msg = f"Epoch [{epoch}/{total_epochs}] - Train Loss: {train_loss:.4f}, Train Acc: {train_acc:.4f}"
-        if val_loss is not None and val_acc is not None:
-            msg += f", Val Loss: {val_loss:.4f}, Val Acc: {val_acc:.4f}"
         self.info(msg)
     
     def log_model_architecture(self, model_info):
@@ -233,6 +230,16 @@ class Logger:
             self.error(f"Exception in {context}: {type(exception).__name__}: {str(exception)}")
         else:
             self.error(f"Exception: {type(exception).__name__}: {str(exception)}")
+            
+    def log_confusion_matrix(y_true, y_pred, class_names, logger):
+        cm = confusion_matrix(y_true, y_pred)
+        header = f"{'':>14}" + "".join(f"{c:>12}" for c in class_names)
+        logger.info(header)
+        logger.info("  " + "-" * (len(header) - 2))
+        for i, name in enumerate(class_names):
+            row = f"  {name:>12}" + "".join(f"{cm[i, j]:>12}" for j in range(len(class_names)))
+            logger.info(row)
+
     
     def close(self):
         """Tutup semua handlers"""
@@ -240,6 +247,8 @@ class Logger:
         for handler in handlers:
             handler.close()
             self.logger.removeHandler(handler)
+            
+    
 
 
 # Convenience function untuk membuat logger dengan mudah
