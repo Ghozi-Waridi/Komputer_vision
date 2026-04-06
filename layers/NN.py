@@ -8,6 +8,12 @@ class NeuralNetwork:
     def __init__(self, layer_sizes=None, learning_rate=0.01, seed=42,
                  input_dim=None, hidden_layers=None, output_dim=None):
 
+        # Jika menggunakan input_dim, hidden_layers, output_dim
+        if layer_sizes is None:
+            if input_dim is None or hidden_layers is None or output_dim is None:
+                raise ValueError("Either layer_sizes or (input_dim, hidden_layers, output_dim) must be provided")
+            layer_sizes = [input_dim] + hidden_layers + [output_dim]
+        
         self.layer_sizes = layer_sizes
         self.learning_rate = learning_rate
         self.num_layers = len(layer_sizes) - 1
@@ -15,7 +21,6 @@ class NeuralNetwork:
         np.random.seed(seed)
         self.weights = []
         self.biases = []
-
 
         for i in range(self.num_layers):
             w = np.random.randn(layer_sizes[i], layer_sizes[i + 1]) * np.sqrt(2.0 / layer_sizes[i])

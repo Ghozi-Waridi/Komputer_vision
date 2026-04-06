@@ -26,7 +26,7 @@ class Conv:
     [0.0625, 0.1250, 0.0625]
 ])
 
-    def __init__(self, pool_size=8):
+    def __init__(self, pool_size=2):
         self.kernel_size = self.KERNEL.shape[0]
         self.pool_size = pool_size
         self.kernel = self.KERNEL
@@ -73,6 +73,9 @@ class Conv:
 
     def extract_features(self, image, idx=None, save_dir=None):
          conv_out = self._convolve2d(image, self.kernel)
+         conv_out = relu(conv_out)
+         pooled = self._max_pool(conv_out, self.pool_size)
+         conv_out = self._convolve2d(pooled, self.kernel)
          conv_out = relu(conv_out)
          pooled = self._max_pool(conv_out, self.pool_size)
 
