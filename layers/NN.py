@@ -104,7 +104,7 @@ class NeuralNetwork:
         return np.argmax(probs, axis=1)
 
     def evaluate(self, X, y, y_labels=None):
-
+        
         y_pred = self.forward(X)
         loss = cross_entropy_loss(y_pred, y)
         pred_labels = np.argmax(y_pred, axis=1)

@@ -20,11 +20,17 @@ class Conv:
     #     [ -1, 0, 1]
     # ], dtype=np.float64)
     
+#     KERNEL = np.array([
+#     [0.0625, 0.1250, 0.0625],
+#     [0.1250, 0.2500, 0.1250],
+#     [0.0625, 0.1250, 0.0625]
+# ])
+
     KERNEL = np.array([
-    [0.0625, 0.1250, 0.0625],
-    [0.1250, 0.2500, 0.1250],
-    [0.0625, 0.1250, 0.0625]
-])
+        [-1, -1, -1],
+        [-1,  8, -1],
+        [-1, -1, -1]
+    ], dtype=np.float64)
 
     def __init__(self, pool_size=2):
         self.kernel_size = self.KERNEL.shape[0]
@@ -99,11 +105,20 @@ class Conv:
         return np.array(all_features)
 
     def get_feature_dim(self, image_size=(128, 128)):
-        oh = image_size[0] - self.kernel_size + 1
-        ow = image_size[1] - self.kernel_size + 1
-        pooled_h = oh // self.pool_size
-        pooled_w = ow // self.pool_size
-        return pooled_h * pooled_w
+        h, w = image_size
+        # First conv + pool
+        h = h - self.kernel_size + 1
+        w = w - self.kernel_size + 1
+        h = h // self.pool_size
+        w = w // self.pool_size
+        
+        # Second conv + pool (matching extract_features)
+        h = h - self.kernel_size + 1
+        w = w - self.kernel_size + 1
+        h = h // self.pool_size
+        w = w // self.pool_size
+        
+        return h * w
 
     def info(self, logger=None):
         lines = [
